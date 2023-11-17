@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <template inherit_id="point_of_sale.report_saledetails" id="report_saledetails_mod">
+        <xpath expr="//table[1]" position="replace">
+            <table  class="table table-sm">
+                <thead><tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price Unit</th>
+                    <th>Image</th>
+                </tr></thead>
+                <tbody>
+                <tr t-foreach='products' t-as='line'>
+                    <td><t t-esc="line['product_name']" /></td>
+                    <td>
+                        <t t-esc="line['quantity']" />
+                        <t t-if='line["uom"] != "Units"'>
+                            <t t-esc='line["uom"]' /> 
+                        </t>
+                    </td>
+                    <td>
+                        <t t-esc='line["price_unit"]' />
+                    <t t-if='line["discount"] != 0'>
+                        Disc: <t t-esc='line["discount"]' />%
+                    </t>
+                    </td>
+                    <td>
+                        <t t-esc='line["image"]' 
+                        t-options="{'widget':'image', 'img_style':'width:50px;height:50px;', 'width':50,'height':50}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</openerp>

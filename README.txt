@@ -1,0 +1,1 @@
+Check '/__manifest__.py' file for description
